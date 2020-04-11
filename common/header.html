@@ -21,9 +21,19 @@
               const hideMobile = (!settings.show_mobile && this.site.mobileView) ? "true" : hideMobile;
               const subCat = (!settings.show_subcategory && category.parentCategory) ? "true" : subCat;
               const noDesc = (settings.hide_if_no_description && !category.description_text) ? "true" : noDesc;
+              let categoryName = category.name;
 
+              if (category.parent_category_id) {
+                  categoryName = category.parentCategory.name + ": " + category.name;
+              }
+              
+              if (category.read_restricted){
+                  categoryName = " " + categoryName;
+              }
+              
               if(!isException && !noDesc && !subCat && !hideMobile) {
                   $("body").addClass("category-header");
+                  //list-controls
 
                   function catDesc() {
                       if(settings.show_description) {
@@ -36,17 +46,17 @@
                           return lockIcon;
                       }
                   }
-
+                  
                   return h('div.category-title-header' + " .category-banner-" + category.slug, {
                       "attributes" : {
-                          "style" : "background-color: #" + category.color + "; color: #" + category.text_color + ";"
+                          "style" : "border-left: 6px solid #" + category.color + ";"
+                          //"style" : "background-color: #" + category.color + "; color: #" + category.text_color + ";"
                       }
                   }, h('div.category-title-contents', [
                   ifProtected(),
-                  h('h1', category.name),
+                  h('h1', categoryName),
                   h('div.category-title-description',catDesc())
                   ]),
-
                   );
               }
           } else {
@@ -60,11 +70,12 @@
           helper.widget.scheduleRerender();
       });
   });
+  
 </script>
-
-<script
+<script type="text/x-handlebars" 
   type="text/x-handlebars"
-  data-template-name="/connectors/below-site-header/category-header-widget"
+  data-template-name="/connectors/above-main-container/category-header-widget"
+  //data-template-name="/connectors/above-site-header/category-header-widget"
 >
   {{mount-widget widget="category-header-widget"}}
 </script>
