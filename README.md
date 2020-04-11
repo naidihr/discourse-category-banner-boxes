@@ -1,8 +1,12 @@
-# discourse-category-banners
+# discourse-category-banner-boxes
 
-A theme component to add category banners to your Discourse community. 
+A theme component to add category banner boxes to your Discourse community. 
 
+This is a fork of dicourse category banners by Kris
 More details here: https://meta.discourse.org/t/discourse-category-banners/86241
 
+This fork incudes the following modifications:
 
-![Category banner](https://discourse-meta.s3-us-west-1.amazonaws.com/original/3X/1/d/1d75ec58312e4a0b4d8b20b3272fca47f2b7247d.png)
+* The category banner box is displayed in-line above the main heading instead of full width at the top. This allows for display a banner theme at the top, for eaxmple the discourse versatile banner.
+* The category banner box is displayed in the same style as the discourse subcategory boxes, which are a core component of discousre. These subcategory baxes are a display option in the dicourse category settings *Show subcategory list above topics in this category*. This option displays the subcategory category name and description as a row or box above the topic list, using the category background colour as the left border. 
+* If the category is a subcategory, the category name is displayed as follows - **Parent category name: Subcategory name**
